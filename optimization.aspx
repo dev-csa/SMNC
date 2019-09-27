@@ -524,19 +524,6 @@ var gender;
         }
         $('#selected_target').html(t);
 	}
-    
-    
-    
-	// Digital CPRP 입력 값 가져오기 
-	// var cprpcpm3;
-	// var cprpcpm4;
-	// var cprpcpm5;
-	// function get_cprpcpm(){
-	// 	cprpcpm3 = $('#cprpcpm3').val();
-	// 	cprpcpm4 = $('#cprpcpm4').val();
-	// 	cprpcpm5 = $('#cprpcpm5').val();
-	// 	console.log(cprpcpm3);
-	// }
 
 
 	function opt_go() {		
@@ -698,15 +685,13 @@ var gender;
                         R3[a] = Math.min(R3[a], R1[a]);
                         
                     }                        
-                    COST[3] = COST[0] + COST[1];
-                    
+                    COST[3] = COST[0] + COST[1];                    
                     GRP[3] = GRP[0] + GRP[1];
                     
                     R1[3] = (R1[0] + R1[1]) - ratio[0]*(R1[0] * R1[1]);
                     R1[3] = Math.min(R1[3], 0.99);  // 토탈 최대값 99
                     R3[3] = (R3[0] + R3[1]) - ratio[0]*(R3[0] * R3[1]);
                     R3[3] = Math.min(R3[3], R1[3]);  // R3토탈 최대값 <= R1토탈 최대값
-                    console.log(R3[3]);
                     if (loop == 1) {
                         for(a=0; a<= 3; a++) {
                             optim_R1[a] =   R1[a];
@@ -729,12 +714,10 @@ var gender;
                 
                 }
             }
-            console.log(optim_CPMCPRP[0]);
-            console.log(optim_CPMCPRP[1]);
-            console.log(optim_CPMCPRP[2]);
+            
             r1_tv_data[0] = (optim_R1[0]*100).toFixed(1);
             r1_pc_data[0] = (optim_R1[1]*100).toFixed(1);
-            r1_mo_data[0] = (optim_R1[2]*100).toFixed(1);
+            r1_mo_data[0] = 0;
             r1_total_data[0] = (optim_R1[3]*100).toFixed(1);
 
             for(a=0;a<3;a++){           
