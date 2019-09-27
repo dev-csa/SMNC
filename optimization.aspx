@@ -15,9 +15,9 @@
 		<tr><td style="padding-top:20px;">분석유형</td></tr>
 		<tr>
 		<td><select class="Lselect" id="selAnalType">
-			<Option value="screen" selected>스크린별</Option>
-			<Option value="digital" >디지털 채널별</Option>
-			<Option value="tvdigital">TV & Digital별</Option>
+			<Option value="type1" selected>스크린별</Option>
+			<Option value="type2" >디지털 채널별</Option>
+			<Option value="type3">TV & Digital별</Option>
 		</select></td>
         </tr>
     
@@ -376,7 +376,7 @@
         $('#divAnalType').html("");
         var analType = $("#selAnalType").val();       
         var s = "";
-        if (analType == "screen") {
+        if (analType == "type1") {
             $('#selectedType').html("스크린별 분석");
             $("#cpm3").hide();
             $("#cpm_popup").show();
@@ -386,19 +386,19 @@
             $('[name=type_name3]').css('width','1%');
             
         }
-        else if (analType == "digital") {
+        else if (analType == "type2") {
             $('#selectedType').html("Digital Channel별 분석");
             $("#cpm3").show();
             $("#cpm_popup").hide();
-            $('[name=type_name1]').text('YouTube');
-            $('[name=type_name2]').text('SMR');
-            $('[name=type_name3]').text('Naver');
+            $('[name=type_name1]').text('S.JSP');
+            $('[name=type_name2]').text('S.CATV');
+            $('[name=type_name3]').text('DGT');
             $('[name=type_name3]').css('width','7%');
             init_table(1);
             init_table(2);
             init_table(3);
         }
-        else if (analType == "tvdigital") {
+        else if (analType == "type3") {
             $('#selectedType').html("TV & Digital별 분석");
             init_table(1);
             init_table(2);
@@ -406,9 +406,9 @@
             $("#cpm3").show();
             $("#cpm_popup").hide();
 
-            $('[name=type_name1]').text('지상파');
-            $('[name=type_name2]').text('케이블&종편');
-            $('[name=type_name3]').text('YouTube');
+            $('[name=type_name1]').text('S.CATV');
+            $('[name=type_name2]').text('M.CATV');
+            $('[name=type_name3]').text('K.CATV');
             $('[name=type_name3]').css('width','7%');
         
             
@@ -630,7 +630,7 @@ var gender;
 
         // var time1 = new Date().getTime();
         // ### 스크린별 최적값 검색 
-        if (analType == 'screen' && i_cost >= 50000) {
+        if (analType == 'type1' && i_cost >= 50000) {
             //i: tv광고비, j: pc광고비, k:mo광고비
             console.log(i_cost);
             for (i=10000; i<=i_cost; i+=step) {
@@ -728,7 +728,7 @@ var gender;
 		}
 
 
-        if (analType != 'screen' && i_cost >= 50000) {
+        if (analType != 'type1' && i_cost >= 50000) {
             //i: tv광고비, j: pc광고비, k:mo광고비
             console.log(i_cost);
             for (i=10000; i<=i_cost; i+=step) {
@@ -863,7 +863,7 @@ var gender;
         
 
         // 그래프 그리기 
-        if (analType == 'screen'){
+        if (analType == 'type1'){
             drawGraph1(no); 
             $('[name=cost_c'+no+']').text(' ');
             // $('[name=type_name3]').css('width','1%');

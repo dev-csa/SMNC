@@ -101,20 +101,20 @@ public partial class json_optimization : System.Web.UI.Page  // 최적화 Optimi
         optCost = v3;
         no = v4;
 
-        if (analType == "screen") { // Screen 시뮬  <TV PC MO>
+        if (analType == "type1") { // Screen 시뮬  <TV PC MO>
             table = "SMNC_variable_type1";      
             table_min = "SMNC_min_type1";    
             title = "[\"TV\", \"DGT\", \"Total\"]";   
         }
-        else if(analType == "digital"){
+        else if(analType == "type2"){
             table = "SMNC_variable_type2";      
             table_min = "SMNC_min_type2";    
-            title = "[\"Youtube\", \"SMR\", \"Naver\", \"Total\"]";   
+            title = "[\"S.JSP\", \"S.CATV\", \"DGT\", \"Total\"]";   
         }
-        else if(analType == "tvdigital"){
+        else if(analType == "type3"){
             table = "SMNC_variable_type3";      
             table_min = "SMNC_min_type3";    
-            title = "[\"TV_지상파\", \"TV_케이블&종편\", \"Youtube\", \"Total\"]";   
+            title = "[\"TV_SBS\", \"TV_MBC\", \"TV_KBS\", \"Total\"]";   
                     
         }
         table_pop = "SMNC_population";
@@ -131,7 +131,7 @@ public partial class json_optimization : System.Web.UI.Page  // 최적화 Optimi
         SqlCommand cmd = new SqlCommand(sqlComm, cn);
         cn.Open();
         SqlDataReader dReader = cmd.ExecuteReader();
-        if(analType == "screen"){
+        if(analType == "type1"){
             if (dReader.Read()) {
                 // Simulation 계산에 사용되는 상수. [intercept = Const, beta = Slope]
                 // Reach1 변수 
@@ -240,7 +240,7 @@ public partial class json_optimization : System.Web.UI.Page  // 최적화 Optimi
 
         json += "{ \"no\": \"" + v4 + "\"";
         json += ", \"title\": " + title;   
-        if(analType == "screen"){
+        if(analType == "type1"){
             json += ", \"r1_const\":    [" + R1_Const1 + ", " + R1_Const2 + ", 1 ]";
             json += ", \"r1_slope\":    [" + R1_Slope1 + ", " + R1_Slope2 + ", 1 ]";
             json += ", \"r3_const\":    [" + R3_Const1 + ", " + R3_Const2 + ", 1 ]";

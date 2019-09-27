@@ -15,23 +15,11 @@
 		<tr><td style="padding-top:20px;">분석유형</td></tr>
 		<tr>
 		<td><select class="Lselect" id="selAnalType">
-			<Option value="screen" selected>스크린별</Option>
-			<Option value="digital" >디지털 채널별</Option>
-			<Option value="tvdigital">TV & Digital별</Option>
+			<Option value="type1" selected>스크린별</Option>
+			<Option value="type2" >디지털 채널별</Option>
+			<Option value="type3">TV & Digital별</Option>
 		</select></td>
-        </tr>
-        <tr><td style="font-size:8px;">        
-            <span class="inline" id="rdoAnalType">
-                <ul class="cost">
-                    <span class="radioInp">
-                        <label><input type="radio"  name="tvType" value="pub" checked />Total TV U YT U SMR<br></label>
-                    </span>
-                    <span class="radioInp">
-                        <label><input type="radio" name="tvType" value="cable" />지상파 U 케이블&종편 U YT</label>
-                    </span> 
-                </ul>
-            </span> 
-        </td></tr>        
+        </tr>    
 
 		<tr><td style="padding-top:20px">분석일자</td></tr>
 		<tr>
@@ -318,16 +306,13 @@
     $("#selAnalType").change(function() {
         RefreshAnalType();
     });
-    $("#rdoAnalType").change(function() {
-        RefreshAnalType();
-    });
+
     function RefreshAnalType() {
         $('#divAnalType').html("");
         var analType = $("#selAnalType").val();       
         var s = "";
-        if (analType == "screen") {
+        if (analType == "type1") {
             $('#selectedType').html("스크린별 분석");
-            $("#rdoAnalType").hide();
             $("#cpm3").hide();
             $('[name=type_name1]').text('TV');
             $('[name=type_name2]').text('DGT');
@@ -335,9 +320,8 @@
             $('[name=type_name3]').css('width','1%');
             
         }
-        else if (analType == "digital") {
+        else if (analType == "type2") {
             $('#selectedType').html("Digital Channel별 분석");
-            $("#rdoAnalType").hide();
             $("#cpm3").show();
             $('[name=type_name1]').text('YouTube');
             $('[name=type_name2]').text('SMR');
@@ -347,12 +331,11 @@
             init_table(2);
             init_table(3);
         }
-        else if (analType == "tvdigital") {
+        else if (analType == "type3") {
             $('#selectedType').html("TV & Digital별 분석");
             init_table(1);
             init_table(2);
             init_table(3);
-            $("#rdoAnalType").show();
             $("#cpm3").show();            
             $('[name=type_name1]').text('Total TV');
             $('[name=type_name2]').text('YouTube');
@@ -482,11 +465,9 @@
     slope_list = [0.906703422, 1.176853487, 1.257387184];
 
     function Getgrp(sTarget){
-        var tvType = $(":input:radio[name=tvType]:checked").val();
         var url = "json_getgrp.aspx";
         url += "?v1=" + sTarget;
         url += "&v2=" + $('#selAnalType').val();
-        url += "&v3=" + tvType;
 
         console.log(url);
         $.ajax({
@@ -523,7 +504,6 @@
         var an = an;
         var device = device;
         var analType = $("#selAnalType").val();
-        var tvType = $(":input:radio[name=tvType]:checked").val();
         var onlytv;
         // console.log(an +"//"+device+"//"+cost);
         onlytv = device + analType;
@@ -540,21 +520,17 @@
             getslope = slope_list[2]
         }        
 
-        // if(onlytv == "1screen" || onlytv == "1tvdigital"){
-        //     grp = Math.exp(getconst + getslope * Math.log(cost)) * 100;
-        //     cprp_cpm = cost/grp;
-        // }
-        // else if(tvType == "cable" && onlytv == "2tvdigital"){
-        //     grp = Math.exp(getconst + getslope * Math.log(cost)) * 100;
-        //     cprp_cpm = cost/grp;
-        // }  
-        // else{
-        //     grp = Math.exp(getconst + getslope * Math.log(cost));
-        //     cprp_cpm = cost/grp*1000;
-        // }
+        console.log(onlytv);
 
-        grp = Math.exp(getconst + getslope * Math.log(cost));
-        cprp_cpm = cost/grp*1000;
+        if(onlytv == "2type1" || onlytv == "3type2"){
+            grp = Math.exp(getconst + getslope * Math.log(cost));
+            cprp_cpm = cost/grp*1000;                
+        }
+        else{
+            grp = Math.exp(getconst + getslope * Math.log(cost))*100;
+            cprp_cpm = cost/grp;                    
+        }
+        
 
         cprp_cpm = cprp_cpm.toFixed(0);
         cprp_cpm = comma(cprp_cpm);
@@ -640,11 +616,8 @@
 
     }
 
-
 	function sml_go() {
-        var tvType = $(":input:radio[name=tvType]:checked").val();
-        var url = "json_simul.aspx";
-        
+        var url = "json_simul.aspx";        
         url += "?v1=" + rdo_target;
         url += "&v2=" + $('#selAnalType').val();
 
@@ -680,7 +653,7 @@
 
             var url2 = url;
             url2 += "&v3=" + cost1 + "&v4=" + cost2 + "&v5=" + cost3 + "&v6=" + cpmcprp1 + "&v7=" + cpmcprp2 + "&v8=" + cpmcprp3;
-            url2 += "&v9="+ i + "&v10=" + tvType;
+            url2 += "&v9="+ i;
             console.log(url2);
             $.ajax({
                 url : url2,
@@ -711,6 +684,7 @@
         var cost_list   = rcv["cost"];
         var share_list  = rcv["share"];
         var af_list     = rcv["af"];
+        var cpm_list    = rcv["cpm"]
         td_title        = rcv["title"];
 
         // var time1 = new Date().getTime();
@@ -723,9 +697,9 @@
         $('[name=cost_c'+no+']').text(comma(cost_list[2].toFixed(0)));
         $('[name=cost_total'+no+']').text(comma(cost_list[3].toFixed(0)));
 
-        $('[name=cost_share_a'+no+']').text((share_list[0]*100).toFixed(1) + ' %');
-        $('[name=cost_share_b'+no+']').text((share_list[1]*100).toFixed(1) + ' %');
-        $('[name=cost_share_c'+no+']').text((share_list[2]*100).toFixed(1) + ' %');
+        $('[name=cost_share_a'+no+']').text((share_list[0]).toFixed(1) + ' %');
+        $('[name=cost_share_b'+no+']').text((share_list[1]).toFixed(1) + ' %');
+        $('[name=cost_share_c'+no+']').text((share_list[2]).toFixed(1) + ' %');
         $('[name=cost_share_total'+no+']').text('100 %');
 
         $('[name=r1_a'+no+']').text((reach1_list[0]*100).toFixed(1) + ' %');
@@ -748,9 +722,9 @@
         $('[name=af_c'+no+']').text(af_list[2].toFixed(1));
         $('[name=af_total'+no+']').text(af_list[3].toFixed(1));
 
-        // $('[name=cpm_a'+no+']').text(comma(CPMCPRP[0].toFixed(0)));
-        // $('[name=cpm_b'+no+']').text(comma(CPMCPRP[1].toFixed(0)));
-        // $('[name=cpm_c'+no+']').text(comma(CPMCPRP[2].toFixed(0)));
+        $('[name=cpm_a'+no+']').text(comma(cpm_list[0].toFixed(0)));
+        $('[name=cpm_b'+no+']').text(comma(cpm_list[1].toFixed(0)));
+        $('[name=cpm_c'+no+']').text(comma(cpm_list[2].toFixed(0)));
 
         r1_tv_data[0] = (reach1_list[0]*100).toFixed(1);
         r1_pc_data[0] = (reach1_list[1]*100).toFixed(1);
@@ -758,7 +732,20 @@
         r1_total_data[0] = (reach1_list[3]*100).toFixed(1);
 
         // 그래프 그리기 
-        drawGraph(no); 
+        if (analType == 'type1'){
+            drawGraph1(no); 
+            $('[name=cost_c'+no+']').text(' ');
+            // $('[name=type_name3]').css('width','1%');
+            $('[name=cost_share_c'+no+']').text(' ');
+            $('[name=r1_c'+no+']').text(' ');
+            $('[name=r3_c'+no+']').text(' ');
+            $('[name=grp_c'+no+']').text(' ');
+            $('[name=af_c'+no+']').text(' ');
+            $('[name=cpm_c'+no+']').text(' ');
+        }
+        else{
+            drawGraph2(no); 
+        }
 
         r1_tv_data =[];
         r1_pc_data =[];
@@ -767,8 +754,119 @@
         td_title = [];
 	}
 
+//분석항목 2개짜리 그래프 
+function drawGraph1(no){
+        var dom = document.getElementById("r1_graph"+no);
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+        app.title = 'Line and bar';
+        var colors = ['#00aeef', '#8dc63f', '#999b9e'];
+        option = {
+            textStyle:{
+				color: '#000000'
+            },
+            color: colors,
+            tooltip: {
+                trigger: 'axis',                
+                axisPointer: {
+                    type: 'cross',
+                    crossStyle: {
+                        color: '#999'
+                    }
+                }
+            },
+            legend: {
+                y : 'bottom',
+                data: td_title
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data:[''],
+                    axisPointer: {
+                        type: 'shadow'
+                    },
+                    axisLine: {
+                        lineStyle: {
+                        color: colors[0]
+                        }
+                    },  
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: 'Reach 1+    ',
+                    //interval: 20,
+                    axisLabel: {
+                        formatter: '{value} %'
+                    },
+                    axisLine: {
+                        lineStyle: {
+                        color: colors[1]
+                        }
+                    },
+                },
+                {
+                    axisLine: {
+                        lineStyle: {
+                        color: colors[2]
+                        }
+                    }
+                },               
+            ],
+            series: [
+                {
+                    name: td_title[0],
+                    type:'bar',
+                    barWidth: '13%',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                        }
+                    },
+                    data: r1_tv_data
+                },
+                {
+                    name: td_title[1],
+                    type:'bar',
+                    barWidth: '13%',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top'
+                        }
+                    },
+                    data: r1_pc_data
+                },                
+                {
+                    name:td_title[2],
+                    type:'bar',
+                    barWidth: '13%',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top'
+                        }
+                    },
+                    data: r1_total_data
+                }
+            ]
+        };
+        ;
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+        setTimeout(function () {
+            window.onresize = function () {
+                myChart.resize();
+            }
+        }, 200)
+    }
 
-    function drawGraph(no){
+    function drawGraph2(no){
         var dom = document.getElementById("r1_graph"+no);
         var myChart = echarts.init(dom);
         var app = {};

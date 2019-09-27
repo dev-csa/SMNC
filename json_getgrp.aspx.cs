@@ -16,7 +16,6 @@ public partial class json_getgrp : System.Web.UI.Page   //GRP 계수 DB에서 �
 
     public string getTarget;
     public string getType;
-    public string gettvType;
     public string table;
 
     public double GRP_Const1;
@@ -34,11 +33,9 @@ public partial class json_getgrp : System.Web.UI.Page   //GRP 계수 DB에서 �
     {
         if (Request["v1"] != null) {v1 = Request["v1"];}
         if (Request["v2"] != null) {v2 = Request["v2"];}
-        if (Request["v3"] != null) {v3 = Request["v3"];}                    
 
         getTarget = v1;
         getType = v2;
-        gettvType = v3;
 
         if (getTarget == null){
             getTarget = "MF0769";
@@ -53,13 +50,9 @@ public partial class json_getgrp : System.Web.UI.Page   //GRP 계수 DB에서 �
         else if(getType == "digital"){
             table = "SMNC_variable_type2";      
         }
-        else if(getType == "tvdigital"){
-            if(gettvType == "pub"){
-                table = "SMNC_variable_TOYTSM";  
-            }
-            else{
-                table = "SMNC_variable_PUCAYT";      
-            }
+        else if(getType == "tvdigital"){            
+            table = "SMNC_variable_type3";      
+            
             
         }
         string strcon = ConfigurationManager.ConnectionStrings["TAMConnectionString1"].ConnectionString;
