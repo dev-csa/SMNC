@@ -925,7 +925,7 @@ body.modal-open {overflow:hidden;}
 
 
 .modal .modalWrap {display:block; margin:0 auto; border:none; overflow:hidden; box-shadow:none; width:100%;}
-.modal .modal_header {min-height:48px; padding:18px 0 15px; width:100%; border-bottom:1px solid #edf0f3; background:#333333; color:#fff; overflow:hidden; position:relative;}
+.modal .modal_header {padding:18px 0 15px; width:100%; border-bottom:1px solid #edf0f3; background:#333333; color:#fff; overflow:hidden; position:relative;}
 .modal .modal_header h2 {height:48px; font-size:1.4rem; display:inline-block; margin:0 70px 0 35px; color:inherit; font-weight:600;}
 .modal .modal_header h2 .sText {font-size:13px; font-weight:normal; letter-spacing:-0.05em;}
 .modal .modal_header .btnClose {display:inline-block; width:60px; height:40px; opacity:1;   position:absolute; right:0; top:50%; margin-top:-20px; background:transparent; color:inherit;}
@@ -938,7 +938,7 @@ body.modal-open {overflow:hidden;}
 .modal .modal_body h2.title {font-size:14px; font-weight:bold; }
 
 .modal .modal_footer {background:#f4f4f4;  border-top:1px solid #d5d8d8; padding:15px 15px 15px; }
-.modal .modal_footer .btnArea {padding:0 0; text-align:right;}
+.modal .modal_footer .btnArea {padding:10px; text-align:right;}
 
 
 
@@ -1844,3 +1844,7 @@ a.menuLink:hover img.over { display: inline;}
 }
 
 
+.popuptablesty .unit.pdNo {padding:0;}
+.popuptablesty .unit button.hTab {border:0;display:block; width:100%; padding:0 8px; height:40px; text-align:left;}
+.popuptablesty .unit button.hTab.active {background:#00aeef; color:#fff;}
+.popuptablesty .unit button.hTab:focus{outline:none;}

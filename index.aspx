@@ -8,66 +8,51 @@
 <!-- head 공통 부분으로 meta 및 css, js 등 사이트 공통 요소를 불러옵니다  -->
 <!-- #include file ="inc_headMeta.htm" -->  
 <body>
-<div id="container">
-  <div id="header">
-    <h1 class="logo"><a href="#" title="SBS M&C" target="_blank">nielsen</a></h1>
-  </div> 
+<div id="container"> 
   <!-- #include file ="header.html" -->  	
 <!-- <div id="leftbar2"></div> -->
 <div id="contents">
-<div id="pageTitbg">
-       <div id="pageTit2"><span class="pageTit">TOTAL ADS RATING</span></div>
+    <div id="mainTitbox2">
+        <table width="100%">
+            <tr>
+            <td width="180px"><img src="images/main_img1.gif" alt="TV,PC,Mobile" /></td>
+            <td width=""><div id="mainTit"><span class="mainTB">T</span>OTAL <span class="mainTB">A</span>DS <span class="mainTB">R</span>ATING</span></div>
+            <div id="main-description">THE MOST TRUSTED FOR CROSS-PLATFORM CAMPAIGN MEASUREMENT</div>
+            </td>
+            </tr>
+        </table>
     </div>
-    <div id="datawrap2">
-   	  <div id="description">TV, PC, Mobile 동영상광고의 통합광고효과를 닐슨의 실측데이터로 분석한 최적의 솔루션</div>
-      <table class="tablestyG1">
-        <tr>
-          <td width="50%" valign="top">
-          <table class="graphBox2">
+    <div id="mainwrap2">
+        <table class="tablestyG1">
             <tr>
-              <td>
-                <div id="graph1" style="height:200px"></div>
-               </td>
+            <td width="50%" valign="top">
+            <div class="main-graphBox">
+                <div class="main-graphBoxT">스크린 이용률</div>
+                <div class="main-graphBoxG" id="graph1" style="height:200px"></div>
+            </div>
+            <div class="main-graphBox">
+                <div class="main-graphBoxT">광고 도달률</div>
+                <div class="main-graphBoxG" id="graph2" style="height:200px"></div>
+            </div>
+            <div class="main-graphBox">
+                <div class="main-graphBoxT">스크린이용자의 성 구성비</div>
+                <div class="main-graphBoxG" id="graph3" style="height:200px"></div>
+            </div>
+            </td>
+            <td width="50%" valign="top">
+                <div class="main-graphBox">
+                <div class="main-graphBoxT">스크린 총 광고비</div>
+                <div class="main-graphBoxG" id="cost_graph" style="height:355px"></div>
+            </div> 
+            <div class="main-graphBox">
+                <div class="main-graphBoxT">스크린이용자의 연령 구성비</div>
+                <div class="main-graphBoxG" id="age_graph" style="height:355px"></div>
+            </div>    
+            </td>
             </tr>
-          </table>
-          <table class="graphBox2">
-            <tr>
-              <td>
-                <div id="graph2" style="height:200px"></div>
-              </td>
-            </tr>
-          </table>
-          <table class="graphBox2">
-            <tr>
-              <td>
-                <div id="graph3" style="height:200px"></div>
-              </td>
-            </tr>
-          </table>
-          </td>
-          <td width="50%" valign="top">
-          	<table class="graphBox2">
-            <!-- <tr><td class="blackTitB">스크린 총 광고비</td></tr> -->
-            <tr>
-              <td>
-                <div id="cost_graph" style="height:320px"></div>
-               </td>
-            </tr>
-          </table>
-          <table class="graphBox2">
-            <tr>
-              <td>
-                <div id="age_graph" style="height:320px"></div>
-               </td>
-            </tr>
-          </table>
-          
-          
-          </td>
-        </tr>
-      </table>
-      <div id="footer">Copyright © Nielsen Company. All rights reserved. </div>
-    </div>
+        </table>
+        <div id="footer">Copyright © Nielsen Company. All rights reserved. </div>
+        </div>
   </div>
 </div>
 </body>
@@ -83,7 +68,8 @@ var labelTop = {
             position : 'center',
             formatter : '{b}',
             textStyle: {
-                baseline : 'bottom'
+                baseline : 'bottom',
+                color: '#000000'
             }
         },
         labelLine : {
@@ -94,7 +80,7 @@ var labelTop = {
 
 var labelTopTV = {
     normal : {
-        color: '#60C0DD',
+        color: '#00aeef',
         label : {            
             show : true,
             position : 'center',
@@ -111,7 +97,7 @@ var labelTopTV = {
 
 var labelTopPC = {
     normal : {
-        color: '#9BCA63',
+        color: '#8dc63f',
         label : {            
             show : true,
             position : 'center',
@@ -128,7 +114,7 @@ var labelTopPC = {
 
 var labelTopMO = {
     normal : {
-        color: '#F3A43B',
+        color: '#ffb100',
         label : {            
             show : true,
             position : 'center',
@@ -231,7 +217,7 @@ var labelBottom = {
         label : {
             show : true,
             position : 'center',
-            textStyle:{ fontSize: 16}
+            textStyle:{ fontSize: 16, color: '#00000'}
         },
         labelLine : {
             show : false
@@ -262,11 +248,6 @@ ageGraph();
                 legend: {
                     data:[ 'TV','PC','Mobile'],                
                 },		
-                title : {
-                text: '스크린 이용률',
-                textStyle:{ fontSize: 16},
-                x: 'left'
-                },
                 series: [
                 {
                     type : 'pie',
@@ -352,15 +333,10 @@ ageGraph();
                 x : '',
                 data:[ 'TV','PC','Mobile']
                 },		
-                title : {
-                    text: '광고 도달률',
-                    textStyle:{ fontSize: 16},
-                    x: 'left'
-                },
                 series: [
                 {
                     type : 'pie',
-                    center : ['20%', '60%'],
+                    center : ['20%', '50%'],
                     radius: ['45%', '60%'],
                     x: '0%', // for funnel
                     itemStyle : labelFromatter,
@@ -371,8 +347,8 @@ ageGraph();
                 },
                 {
                     type : 'pie',
-                    center : ['50%', '60%'],
-                    radius: ['45%', '60%'],
+                    center : ['50%', '50%'],
+                    radius: ['45%', '60'],
                     x: '0%', // for funnel
                     itemStyle : labelFromatter,
                     data : [
@@ -382,7 +358,7 @@ ageGraph();
                 },
                 {
                     type : 'pie',
-                    center : ['80%', '60%'],
+                    center : ['80%', '50%'],
                     radius: ['45%', '60%'],
                     x: '0%', // for funnel
                     itemStyle : labelFromatter,
@@ -438,11 +414,6 @@ ageGraph();
                 //   y : 'center',
                   data:['남성', '여성']
                 },		
-                title : {
-                    text: '광고 도달률',
-                    textStyle:{ fontSize: 16},
-                    x: 'left'
-                },
                 series: [
                 {
                     type : 'pie',
@@ -517,11 +488,6 @@ ageGraph();
                 var cost_data = [1534.0, 2695.9, 719.9, 454.2];
                 option = {  
                     color: ['#f56c5c'],
-                    title : {
-                        text: '스크린 총 광고비',
-                        textStyle:{ fontSize: 16},
-                        x: 'left'
-                    },
                     tooltip : {
                         trigger: 'axis',
                         axisPointer : {            
@@ -553,7 +519,7 @@ ageGraph();
                                 normal: {
                                     color: function(params) {
                                         // build a color map as your need.
-                                        var colorList = ['#FE8463','#9BCA63','#FAD860','#999b9e'];
+                                        var colorList = ['#00aeef','#8dc63f','#ffb100','#999b9e'];
                                         return colorList[params.dataIndex]
                                     },
                                     label: {
@@ -603,12 +569,7 @@ ageGraph();
             function (ec) {
                 // Initialize after dom ready
                 var myChart = ec.init(document.getElementById('age_graph')); 
-                option = {
-                    title : {
-                        text: '스크린 이용자의 연령 구성비',
-                        textStyle:{ fontSize: 16},
-                        x: 'left'
-                    },                    
+                option = {                  
                     tooltip : {
                         trigger: 'item',
                         axisPointer : {           

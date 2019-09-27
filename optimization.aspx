@@ -8,9 +8,6 @@
 </head>
 <body class="amb_layout_common" oncontextmenu='return false'>
 <div id="container">
-  <div id="header">
-    <h1 class="logo"><a href="#" title="SBS M&C" target="_blank">nielsen</a></h1>
-  </div> 
   <!-- #include file ="header.html" -->  
 <div >
 	<div id="leftbar2" >
@@ -18,21 +15,12 @@
 		<tr><td style="padding-top:20px;">분석유형</td></tr>
 		<tr>
 		<td><select class="Lselect" id="selAnalType">
-			<Option value="screen">스크린별</Option>
-			<Option value="digital" selected>디지털 채널별</Option>
+			<Option value="screen" selected>스크린별</Option>
+			<Option value="digital" >디지털 채널별</Option>
 			<Option value="tvdigital">TV & Digital별</Option>
 		</select></td>
         </tr>
-        <tr><td style="font-size:8px;">
-            <span class="inline" id="rdoAnalType">
-                <span class="radioInp">
-                    <input type="radio" name="tvType" value="pub" checked /><label>Total TV U YT U SMR<br></label>
-                </span>
-                <span class="radioInp">
-                    <input type="radio" name="tvType" value="cable" /><label>지상파 U 케이블&종편 U YT</label>
-                </span> 
-            </span> 
-        </td></tr>        
+    
 
 		<tr><td style="padding-top:20px">분석일자</td></tr>
 		<tr>
@@ -47,37 +35,53 @@
 		</tr>
 
 	    <tr><td style="padding-top:20px">타깃</td></tr>
-        <tr><td><button type="button" class="amb_btnstyle blue middle bold" onClick="layerPopup('optimization_popup.htm' , 'popupId_10_01', '' , '650');">타깃 설정</button></td></tr>
+        <tr><td><a href="#" class="button blue" onClick="layerPopup('optimization_popup.htm' , 'popupId_10_01', '200' , '650');">타깃 설정</a></td></tr>
 		<tr><td><span id="selected_target">(개인 / 전체)</span> </td> </tr>
 		
 		<tr><td style="padding-top:20px;">총 광고비</td></tr>
-		<tr>
-			<td class="amb_layout_common noraml">1 <input type="text" class="Linput" size="6" id="optcost1" onkeyup="comma_and_hangul(this);"/> 천원
-				<button type="button" class="amb_btnstyle grayS" onClick="addUnit(this);">+</button>
-			</td>
-		</tr>
-		<tr class="unit" id="target01" style="display:none;">
-			<td class="amb_layout_common noraml">2 <input type="text" class="Linput" size="7" id="optcost2" onkeyup="comma_and_hangul(this);"/> 천원
-				<button type="button" class="amb_btnstyle grayS" id="minus2" onClick="removeUnit(this);">-</button> 
-			</td>
-		</tr>
-		<tr class="unit" id="target02" style="display:none;" >
-			<td class="amb_layout_common noraml">3 <input type="text" class="Linput" size="7" id="optcost3" onkeyup="comma_and_hangul(this);"/> 천원
-				<button type="button" class="amb_btnstyle grayS" id="minus3" onClick="removeUnit(this);">-</button> 
-			</td>
-		</tr>
-
+        <tr>
+            <td class="amb_layout_common noraml">
+                <ul class="cost">
+                    <li>1 <input type="text" class="Linput" id="optcost1" onkeyup="comma_and_hangul(this);"/> 천원 
+                        <a href="#" class="button grayS" onClick="addUnit(this);">+</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr class="unit" id="target01" style="display:none;">
+            <td class="amb_layout_common noraml">
+                <ul class="cost">
+                    <li>2 <input type="text" class="Linput" id="optcost2" onkeyup="comma_and_hangul(this);"/> 천원
+                        <a href="#" class="button grayS"  id="minus2" onClick="removeUnit(this);">-</a> 
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr class="unit" id="target02" style="display:none;">
+            <td class="amb_layout_common noraml">
+                <ul class="cost">
+                    <li>2 <input type="text" class="Linput" id="optcost3" onkeyup="comma_and_hangul(this);"/> 천원
+                        <a href="#" class="button grayS"  id="minus3" onClick="removeUnit(this);">-</a> 
+                    </li>
+                </ul>
+            </td>
+        </tr>
 		<tr><td><spna class="blueL" id="optkor"></spna></td></tr>
 		
-		<tr><td style="padding-top:20px;"> CPM </td></tr>
-		<tr><td class="amb_layout_common noraml"><input type="text" class="Linput" size="7" id="cprpcpm1"/> (YT)원</td>	</tr>
-        <tr><td class="amb_layout_common noraml"><input type="text" class="Linput" size="7" id="cprpcpm2"/> (SMR)원</td></tr>
-        <tr><td class="amb_layout_common noraml"><input type="text" class="Linput" size="7" id="cprpcpm3"/> (Naver)원</td></tr>
-        <!-- <tr>
-			<td style="padding-top:20px;"><button type="button" class="amb_btnstyle blue middle bold" onClick="layerPopup('popup_DGT-CPRP_CPM.html' , 'popupId_10_01', '' , '400');">DGT 상세설정</button></td>            
+        <tr><td style="padding-top:20px;"> CPM </td></tr>
+        <tr><td>
+            <ul class="cost">
+                <li><input type="text" class="Linput" id="cprpcpm1" onkeyup="comma_and_hangul(this);"/> (<span name="type_name1"></span>)원</li>
+                <li><input type="text" class="Linput" id="cprpcpm2" onkeyup="comma_and_hangul(this);"/> (<span name="type_name2"></span>)원</li>
+                <li id="cpm3"><input type="text" class="Linput" id="cprpcpm3" onkeyup="comma_and_hangul(this);"/> (<span name="type_name3"></span>)원</li>
+                <spna class="blueL" id="cprpcpmkor"></spna>
+            </ul>
+        </td></tr>
+        <!-- <tr id="cpm_popup">
+			<td style="padding-top:20px;"><a href="#" class="button blue" onClick="layerPopup('popup_DGT-CPRP_CPM.html' , 'popupId_10_01', '' , '400');">DGT 상세설정</a></td>            
 		</tr>		 -->
 		<tr>
-			<td style="padding-top:20px"><button type="button" class="amb_btnstyle blue middle bold" id="go" onclick="opt_go();"  style="float:right">분석</button>  </td>
+			<td style="padding-top:20px"><span class="leftBtn"> <a class="button blue" id="go" onclick="opt_go();">분석</a> </span></td>
 		</tr>
 	</table>
 	</div>
@@ -86,16 +90,37 @@
 		    <div id="pageTit"><span class="pageTit">3S Planning Effectiveness – Budget Optimization </span></div>
 		</div>
 		<div id="datawrap">
-            <div id="opt_graph">
-                <table class="graphBox4">
-                <tr>
-                    <td><div id="r1_graph1" style="height:250px;"></div></td>
-                    <td><div id="r1_graph2" style="height:250px;"></div></td>
-                    <td><div id="r1_graph3" style="height:250px;"></div></td>
-                </tr>
-            </table>
-            </div>
-            <div id="opt_result">
+            <div class="wrap-loading display-none">
+                <div><img src="images/loading.gif" /></div>               
+            </div> 
+            <div id="pageTitGrouping"><span id="selectedType"> 분석 </span></div>
+            
+            <!-- 분석 결과 구간  -->        
+            <div id="opt_graph_dig" >
+                <table class="tablestyG1">
+                    <tr>
+                        <td width="33%">                
+                            <div class="graphBox">
+                                <div class="graphBox3T">1안</div>
+                                <div class="graphBox3G" id="r1_graph1" style="height:250px;"> </div>
+                            </div>
+                        </td>
+                        <td width="33%">                
+                            <div class="graphBox">
+                                <div class="graphBox3T">2안</div>
+                                <div class="graphBox3G" id="r1_graph2" style="height:250px;"> </div>
+                            </div>
+                        </td>
+                        <td width="33%">                
+                            <div class="graphBox">
+                                <div class="graphBox3T">3안</div>
+                                <div class="graphBox3G" id="r1_graph3" style="height:250px;"> </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div> <br/>
+            <div id="opt_result_dig">
                 <table class="tablesty">
                     <tr>
                       <th width="">&nbsp;</th>
@@ -104,7 +129,7 @@
                       <th colspan="4">3안</th>
                     </tr>
                     <tr>
-                      <td width="" class="tableth2">산출지표</td>
+                      <td width="15%" class="tableth2">산출지표</td>
                       <td width="7%" class="tableth2" name="type_name1">YouTube</td>
                       <td width="7%" class="tableth2" name="type_name2">SMR</td>
                       <td width="7%" class="tableth2" name="type_name3">Naver</td>
@@ -209,7 +234,7 @@
                       <td name="af_total3"></td>
                     </tr>
                     <tr>
-                      <td>CRP&amp;CPM(원)</td>
+                      <td>CPRP&amp;CPM(원)</td>
                       <td name="cpm_a1"></td>
                       <td name="cpm_b1"></td>
                       <td name="cpm_c1"></td>
@@ -272,27 +297,121 @@
 	
 	function removeUnit(obj){
 		var $this = $(obj);
-		var id = $this.id();
-        console.log(id);
         $this.parents('.unit').hide();        
+        var s1 = $('#target01').is(":visible");
+        var s2 = $('#target02').is(":visible");        
+        if (s1 == false){ $('#optcost2').val(''); }
+        if (s2 == false){ $('#optcost3').val(''); }
 	}
 
+    // 결과 table 초기화 
+    function init_table(i){
+        // $('[name=cost_a'+i+']').text('n/a');
+        // $('[name=cost_b'+i+']').text('n/a');
+        // $('[name=cost_c'+i+']').text('n/a');
+        // $('[name=cost_total'+i+']').text('n/a');
+
+        // $('[name=cost_share_a'+i+']').text('n/a');
+        // $('[name=cost_share_b'+i+']').text('n/a');
+        // $('[name=cost_share_c'+i+']').text('n/a');
+        // $('[name=cost_share_total'+i+']').text('n/a');
+
+        // $('[name=r1_a'+i+']').text('n/a');
+        // $('[name=r1_b'+i+']').text('n/a');
+        // $('[name=r1_c'+i+']').text('n/a');
+        // $('[name=r1_total'+i+']').text('n/a');
+
+        // $('[name=r3_a'+i+']').text('n/a');
+        // $('[name=r3_b'+i+']').text('n/a');
+        // $('[name=r3_c'+i+']').text('n/a');
+        // $('[name=r3_total'+i+']').text('n/a');        
+
+        // $('[name=grp_a'+i+']').text('n/a');
+        // $('[name=grp_b'+i+']').text('n/a');
+        // $('[name=grp_c'+i+']').text('n/a');
+        // $('[name=grp_total'+i+']').text('n/a');
+
+        // $('[name=af_a'+i+']').text('n/a');
+        // $('[name=af_b'+i+']').text('n/a');
+        // $('[name=af_c'+i+']').text('n/a');
+        // $('[name=af_total'+i+']').text('n/a');
+        $('[name=cost_a'+i+']').text(' ');
+        $('[name=cost_b'+i+']').text(' ');
+        $('[name=cost_c'+i+']').text(' ');
+        $('[name=cost_total'+i+']').text(' ');
+
+        $('[name=cost_share_a'+i+']').text(' ');
+        $('[name=cost_share_b'+i+']').text(' ');
+        $('[name=cost_share_c'+i+']').text(' ');
+        $('[name=cost_share_total'+i+']').text(' ');
+
+        $('[name=r1_a'+i+']').text(' ');
+        $('[name=r1_b'+i+']').text(' ');
+        $('[name=r1_c'+i+']').text(' ');
+        $('[name=r1_total'+i+']').text(' ');
+
+        $('[name=r3_a'+i+']').text(' ');
+        $('[name=r3_b'+i+']').text(' ');
+        $('[name=r3_c'+i+']').text(' ');
+        $('[name=r3_total'+i+']').text(' ');        
+
+        $('[name=grp_a'+i+']').text(' ');
+        $('[name=grp_b'+i+']').text(' ');
+        $('[name=grp_c'+i+']').text(' ');
+        $('[name=grp_total'+i+']').text(' ');
+
+        $('[name=af_a'+i+']').text(' ');
+        $('[name=af_b'+i+']').text(' ');
+        $('[name=af_c'+i+']').text(' ');
+        $('[name=af_total'+i+']').text(' ');        
+
+        //$("#r1_graph"+i).empty();
+    }    
     // 분석유형 별 label 변경 
     $("#selAnalType").change(function() {
         RefreshAnalType();
     });
+
     function RefreshAnalType() {
         $('#divAnalType').html("");
         var analType = $("#selAnalType").val();       
         var s = "";
         if (analType == "screen") {
-            $("#rdoAnalType").hide();
+            $('#selectedType').html("스크린별 분석");
+            $("#cpm3").hide();
+            $("#cpm_popup").show();
+            $('[name=type_name1]').text('TV');
+            $('[name=type_name2]').text('DGT');
+            $('[name=type_name3]').text('');
+            $('[name=type_name3]').css('width','1%');
+            
         }
         else if (analType == "digital") {
-            $("#rdoAnalType").hide();
+            $('#selectedType').html("Digital Channel별 분석");
+            $("#cpm3").show();
+            $("#cpm_popup").hide();
+            $('[name=type_name1]').text('YouTube');
+            $('[name=type_name2]').text('SMR');
+            $('[name=type_name3]').text('Naver');
+            $('[name=type_name3]').css('width','7%');
+            init_table(1);
+            init_table(2);
+            init_table(3);
         }
         else if (analType == "tvdigital") {
-            $("#rdoAnalType").show();
+            $('#selectedType').html("TV & Digital별 분석");
+            init_table(1);
+            init_table(2);
+            init_table(3);
+            $("#cpm3").show();
+            $("#cpm_popup").hide();
+
+            $('[name=type_name1]').text('지상파');
+            $('[name=type_name2]').text('케이블&종편');
+            $('[name=type_name3]').text('YouTube');
+            $('[name=type_name3]').css('width','7%');
+        
+            
         }
     }
     RefreshAnalType();    
@@ -304,11 +423,11 @@
     // 만단위 한글 표시
     var arrManWord = new  Array("","만","억", "조"); 
     
-    function comma_and_hangul(txt_id) {
+    function comma_and_hangul(txt_id) {    
         var inputId = '#' + txt_id.id;
         var inputVal = txt_id.value;
         var len = inputId.length;
-
+        
         re = /[~!@\#$%^&*\()\-=+_/`']/gi;
         re2 = /[,]/gi;
         
@@ -322,7 +441,6 @@
             var tmps2 = tmps.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
             $(inputId).val(tmps2);
         }
-
         //한글 변환
         var inputVal2 = tmps2;
 
@@ -361,6 +479,9 @@
         // $(id).html(han_value);  
         if(inputId.substring(0, 4) == "#opt"){
             $("#optkor").html(han_value);
+        }
+        if(inputId.substring(0, 4) == "#cpr"){
+            $("#cprpcpmkor").html(han_value);
         }
         
     }
@@ -403,7 +524,9 @@ var gender;
         }
         $('#selected_target').html(t);
 	}
-	
+    
+    
+    
 	// Digital CPRP 입력 값 가져오기 
 	// var cprpcpm3;
 	// var cprpcpm4;
@@ -415,13 +538,13 @@ var gender;
 	// 	console.log(cprpcpm3);
 	// }
 
+
 	function opt_go() {		
         if (rdo_target == "") {
             rdo_target = "MF0769";
         }
         exc_html = "";
         opt_html = "";
-        var tvType = $(":input:radio[name=tvType]:checked").val();
         var url = "json_optimization.aspx";
 		var analType = $("#selAnalType").val();  //분석유형         
         url += "?v1=" + analType;    
@@ -438,7 +561,7 @@ var gender;
                     alert(i+'. 총광고비 입력 오류: \n총광고비는 최대 100억원 까지 분석 가능합니다!');
                 }
                 else{
-                    var url2 = url + "&v3=" + i_cost + "&v4=" + i + "&v5=" + tvType + "&fn=optim";
+                    var url2 = url + "&v3=" + i_cost + "&v4=" + i + "&fn=optim";
                     console.log(url2);
                     $.ajax({
                         url : url2,
@@ -459,37 +582,7 @@ var gender;
                 }
             }
             else{
-                $('[name=cost_a'+i+']').text('n/a');
-                $('[name=cost_b'+i+']').text('n/a');
-                $('[name=cost_c'+i+']').text('n/a');
-                $('[name=cost_total'+i+']').text('n/a');
-
-                $('[name=cost_share_a'+i+']').text('n/a');
-                $('[name=cost_share_b'+i+']').text('n/a');
-                $('[name=cost_share_c'+i+']').text('n/a');
-                $('[name=cost_share_total'+i+']').text('n/a');
-
-                $('[name=r1_a'+i+']').text('n/a');
-                $('[name=r1_b'+i+']').text('n/a');
-                $('[name=r1_c'+i+']').text('n/a');
-                $('[name=r1_total'+i+']').text('n/a');
-
-                $('[name=r3_a'+i+']').text('n/a');
-                $('[name=r3_b'+i+']').text('n/a');
-                $('[name=r3_c'+i+']').text('n/a');
-                $('[name=r3_total'+i+']').text('n/a');        
-
-                $('[name=grp_a'+i+']').text('n/a');
-                $('[name=grp_b'+i+']').text('n/a');
-                $('[name=grp_c'+i+']').text('n/a');
-                $('[name=grp_total'+i+']').text('n/a');
-
-                $('[name=af_a'+i+']').text('n/a');
-                $('[name=af_b'+i+']').text('n/a');
-                $('[name=af_c'+i+']').text('n/a');
-                $('[name=af_total'+i+']').text('n/a');
-
-                $("#r1_graph"+i).empty();
+                init_table(i);
             }                         
         }
 	}
@@ -530,6 +623,7 @@ var gender;
         var optim_af        = [0, 0, 0, 0];
         var loop = 0;
         var i_cpmcprp = [];
+        var analType = $("#selAnalType").val();  //분석유형   
         cost = $('#optcost'+no).val();
         i_cost = cost.replace(/[^\d]+/g, '');   //총광고비 입력값
         
@@ -545,9 +639,113 @@ var gender;
         i_cpmcprp[1] = i_cpmcprp[1].replace(/[^\d]+/g, '');
         i_cpmcprp[2] = $('#cprpcpm3').val();
         i_cpmcprp[2] = i_cpmcprp[2].replace(/[^\d]+/g, '');
+        
 
-        var time1 = new Date().getTime();
-        if (i_cost >= 50000) {
+        // var time1 = new Date().getTime();
+        // ### 스크린별 최적값 검색 
+        if (analType == 'screen' && i_cost >= 50000) {
+            //i: tv광고비, j: pc광고비, k:mo광고비
+            console.log(i_cost);
+            for (i=10000; i<=i_cost; i+=step) {
+                for (j=10000; j<=i_cost; j+=step) {
+                    // tv, pc mobile 배분값
+                    if ((i+j) != i_cost) {continue}
+                    loop += 1;
+
+                    // 배열설명>> [0]:tv, [1]:pc, [2]:mo, [3]:total
+                    COST[0] = i;
+                    COST[1] = j;
+                    
+                    for(a=0; a<= 1; a++){
+                        // GRP, Reach1, Reach3 계산
+                        // 사용자가 CPM/CPRP 입력 했을 경우 
+                        if(i_cpmcprp[a] != ""){
+                            CPMCPRP[a] = i_cpmcprp[a];
+                            if(td_title[a].substring(0,2) == 'TV'){
+                                GRP[a] = (COST[a]*1000) / CPMCPRP[a];  // tv GRP 계산 
+                                IMP[a] = GRP[a] / 100;
+                                CPMCPRP[a] = (COST[a]*1000) / GRP[a];
+                            }
+                            else{
+                                IMP[a] = (COST[a]*1000) / CPMCPRP[a] * 1000;     // digital GRP 계산 
+                                GRP[a] = IMP[a];    // Digital (YT)   
+                                CPMCPRP[a] = (COST[a]*1000) / IMP[a] * 1000;
+                            }
+                        }
+                        // 사용자가 CPM/CPRP 입력하지 않았을 경우 
+                        else{
+                            
+                            if(td_title[a].substring(0,2) == 'TV'){
+                                GRP[a] = Math.exp(grp_const[a] + grp_slope[a] * Math.log(COST[a]*1000)) * 100;
+                                IMP[a] = GRP[a] / 100;
+                                CPMCPRP[a] = (COST[a]*1000) / GRP[a];
+                            }
+                            else{
+                                IMP[a] = Math.exp(grp_const[a] + grp_slope[a] * Math.log(COST[a]*1000) );
+                                GRP[a] = IMP[a];
+                                CPMCPRP[a] = (COST[a]*1000) / IMP[a] * 1000;
+                            }
+                        }  
+                        if(td_title[a].substring(0,2) != 'TV'){
+                            GRP[a] = GRP[a] / population[0] * 100;
+                        }
+                        R1[a] = Math.exp(reach1_const[a] + reach1_slope[a] * Math.log( IMP[a]) );
+                        R1[a] = R1[a] / (R1[a] + 1);                            
+                        R3[a] = Math.exp(reach3_const[a] + reach3_slope[a] * Math.log( IMP[a]) );
+                        R3[a] = R3[a] / (R3[a] + 1);
+
+                        // 상한값 적용 모두 해제 19.06.27                            
+                        R3[a] = Math.min(R3[a], R1[a]);
+                        
+                    }                        
+                    COST[3] = COST[0] + COST[1];
+                    
+                    GRP[3] = GRP[0] + GRP[1];
+                    
+                    R1[3] = (R1[0] + R1[1]) - ratio[0]*(R1[0] * R1[1]);
+                    R1[3] = Math.min(R1[3], 0.99);  // 토탈 최대값 99
+                    R3[3] = (R3[0] + R3[1]) - ratio[0]*(R3[0] * R3[1]);
+                    R3[3] = Math.min(R3[3], R1[3]);  // R3토탈 최대값 <= R1토탈 최대값
+                    console.log(R3[3]);
+                    if (loop == 1) {
+                        for(a=0; a<= 3; a++) {
+                            optim_R1[a] =   R1[a];
+                            optim_R3[a] =   R3[a];
+                            optim_GRP[a] =  GRP[a];
+                            optim_COST[a] = COST[a];
+                            optim_CPMCPRP[a] = CPMCPRP[a];
+                        }
+                    }
+
+                    if (optim_R1[3] < R1[3]) {
+                        for(a=0; a<= 3; a++) {
+                            optim_R1[a] =   R1[a];
+                            optim_R3[a] =   R3[a];
+                            optim_GRP[a] =  GRP[a];
+                            optim_COST[a] = COST[a];
+                            optim_CPMCPRP[a] = CPMCPRP[a];
+                        }
+                    }
+                
+                }
+            }
+            console.log(optim_CPMCPRP[0]);
+            console.log(optim_CPMCPRP[1]);
+            console.log(optim_CPMCPRP[2]);
+            r1_tv_data[0] = (optim_R1[0]*100).toFixed(1);
+            r1_pc_data[0] = (optim_R1[1]*100).toFixed(1);
+            r1_mo_data[0] = (optim_R1[2]*100).toFixed(1);
+            r1_total_data[0] = (optim_R1[3]*100).toFixed(1);
+
+            for(a=0;a<3;a++){           
+                // optim_CPMCPRP[a] = i_cpmcprp[a];
+                optim_share[a] = (optim_COST[a] / i_cost);
+                optim_af[a] = optim_GRP[a] / optim_R1[a] / 100;
+            }
+		}
+
+
+        if (analType != 'screen' && i_cost >= 50000) {
             //i: tv광고비, j: pc광고비, k:mo광고비
             console.log(i_cost);
             for (i=10000; i<=i_cost; i+=step) {
@@ -632,7 +830,6 @@ var gender;
                     }
                 }
             }
-            
             r1_tv_data[0] = (optim_R1[0]*100).toFixed(1);
             r1_pc_data[0] = (optim_R1[1]*100).toFixed(1);
             r1_mo_data[0] = (optim_R1[2]*100).toFixed(1);
@@ -646,14 +843,15 @@ var gender;
 		}      
 
         // 데이터테이블 화면에 나타내기  
-        $('[name=cost_a'+no+']').text(optim_COST[0].toFixed(0));
-        $('[name=cost_b'+no+']').text(optim_COST[1].toFixed(0));
-        $('[name=cost_c'+no+']').text(optim_COST[2].toFixed(0));
-        $('[name=cost_total'+no+']').text(optim_COST[3].toFixed(0));
+        $('[name=cost_a'+no+']').text(comma(optim_COST[0].toFixed(0)));
+        $('[name=cost_b'+no+']').text(comma(optim_COST[1].toFixed(0)));
+        $('[name=cost_c'+no+']').text(comma(optim_COST[2].toFixed(0)));
+        $('[name=cost_total'+no+']').text(comma(optim_COST[3].toFixed(0)));
 
         $('[name=cost_share_a'+no+']').text((optim_share[0]*100).toFixed(1) + ' %');
         $('[name=cost_share_b'+no+']').text((optim_share[1]*100).toFixed(1) + ' %');
         $('[name=cost_share_c'+no+']').text((optim_share[2]*100).toFixed(1) + ' %');
+        $('[name=cost_share_total'+no+']').text('100 %');
 
         $('[name=r1_a'+no+']').text((optim_R1[0]*100).toFixed(1) + ' %');
         $('[name=r1_b'+no+']').text((optim_R1[1]*100).toFixed(1) + ' %');
@@ -674,10 +872,29 @@ var gender;
         $('[name=af_b'+no+']').text(optim_af[1].toFixed(1));
         $('[name=af_c'+no+']').text(optim_af[2].toFixed(1));
         $('[name=af_total'+no+']').text(optim_af[3].toFixed(1));
+
+        $('[name=cpm_a'+no+']').text(comma(CPMCPRP[0].toFixed(0)));
+        $('[name=cpm_b'+no+']').text(comma(CPMCPRP[1].toFixed(0)));
+        $('[name=cpm_c'+no+']').text(comma(CPMCPRP[2].toFixed(0)));
+
         
 
         // 그래프 그리기 
-        drawGraph(no); 
+        if (analType == 'screen'){
+            drawGraph1(no); 
+            $('[name=cost_c'+no+']').text(' ');
+            // $('[name=type_name3]').css('width','1%');
+            $('[name=cost_share_c'+no+']').text(' ');
+            $('[name=r1_c'+no+']').text(' ');
+            $('[name=r3_c'+no+']').text(' ');
+            $('[name=grp_c'+no+']').text(' ');
+            $('[name=af_c'+no+']').text(' ');
+            $('[name=cpm_c'+no+']').text(' ');
+        }
+        else{
+            drawGraph2(no); 
+        }
+        
         r1_tv_data =[];
         r1_pc_data =[];
         r1_mo_data =[];
@@ -685,14 +902,126 @@ var gender;
         td_title = [];
 	}
 
-
-    function drawGraph(no){
+    //분석항목 2개짜리 그래프 
+    function drawGraph1(no){
         var dom = document.getElementById("r1_graph"+no);
         var myChart = echarts.init(dom);
         var app = {};
         option = null;
         app.title = 'Line and bar';
-        var colors = ['#f56c5c', '#a49a4e', '#56a3a9', '#999b9e'];
+        var colors = ['#00aeef', '#8dc63f', '#999b9e'];
+        option = {
+            textStyle:{
+				color: '#000000'
+            },
+            color: colors,
+            tooltip: {
+                trigger: 'axis',                
+                axisPointer: {
+                    type: 'cross',
+                    crossStyle: {
+                        color: '#999'
+                    }
+                }
+            },
+            legend: {
+                y : 'bottom',
+                data: td_title
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data:[''],
+                    axisPointer: {
+                        type: 'shadow'
+                    },
+                    axisLine: {
+                        lineStyle: {
+                        color: colors[0]
+                        }
+                    },  
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: 'Reach 1+    ',
+                    //interval: 20,
+                    axisLabel: {
+                        formatter: '{value} %'
+                    },
+                    axisLine: {
+                        lineStyle: {
+                        color: colors[1]
+                        }
+                    },
+                },
+                {
+                    axisLine: {
+                        lineStyle: {
+                        color: colors[2]
+                        }
+                    }
+                },               
+            ],
+            series: [
+                {
+                    name: td_title[0],
+                    type:'bar',
+                    barWidth: '13%',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                        }
+                    },
+                    data: r1_tv_data
+                },
+                {
+                    name: td_title[1],
+                    type:'bar',
+                    barWidth: '13%',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top'
+                        }
+                    },
+                    data: r1_pc_data
+                },                
+                {
+                    name:td_title[2],
+                    type:'bar',
+                    barWidth: '13%',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top'
+                        }
+                    },
+                    data: r1_total_data
+                }
+            ]
+        };
+        ;
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+        setTimeout(function () {
+            window.onresize = function () {
+                myChart.resize();
+            }
+        }, 200)
+    }
+
+    // 분석항목 3개짜리 그래프 
+    function drawGraph2(no){
+        var dom = document.getElementById("r1_graph"+no);
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+        app.title = 'Line and bar';
+        var colors = ['#00aeef', '#8dc63f', '#ffb100', '#999b9e'];
         option = {
             textStyle:{
 				color: '#000000'
@@ -814,5 +1143,9 @@ var gender;
                 myChart.resize();
             }
         }, 200)
-    }    
+    }   
+    
+    
+    
+
 </script>

@@ -123,8 +123,12 @@ public partial class json_bytarget : System.Web.UI.Page  // 최적화 Optimizati
         else if(gender == "M"){
             info_target = "남자 ";
         }
+        
         age_num = age.Length;        
-        if(age == "'ALL'"){            
+        if(age == "ALL"){            
+            info_target += "전체";
+        }
+        else if(age.Substring(1, 3) == "ALL"){
             info_target += "전체";
         }
         else{

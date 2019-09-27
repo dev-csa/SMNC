@@ -6,11 +6,8 @@
 <meta charset="utf-8">
 <!-- #include file ="inc_headMeta.htm" -->  
 </head>
-<body class="amb_layout_common" oncontextmenu='return false'>
+<body>
 <div id="container">
-  <div id="header">
-    <h1 class="logo"><a href="#" title="SBS M&C" target="_blank">nielsen</a></h1>
-  </div> 
 	<!-- #include file ="header.html" -->  
 <div >
 	<div id="leftbar2" >
@@ -19,7 +16,7 @@
 		<td style="padding-top:20px">분석일자</td>
 		</tr>
 		<tr>
-		<td><select class="inp" id="sMonth">
+		<td><select class="Lselect" id="sMonth">
 			<option value="201901">2019년 1월</option>
 			<option value="201902">2019년 2월</option>
 			<option value="201903">2019년 3월</option>
@@ -32,7 +29,7 @@
 			<td style="padding-top:20px">구분</td>
 		</tr>
 		<tr>
-			<td><select class="inp" id="sDaytype">
+			<td><select class="Lselect" id="sDaytype">
 				<option value="주중">주중</option>
 				<option value="주말">주말</option>
 			</select></td>
@@ -41,7 +38,7 @@
 		<td style="padding-top:20px">성별</td>
 		</tr>
 		<tr>
-		<td><select class="inp" id="sGender">
+		<td><select class="Lselect" id="sGender">
 			<option value="MF">전체</option>
 			<option value="F">여자</option>
 			<option value="M">남자</option>
@@ -53,69 +50,22 @@
 		<tr>
 			<td>
 				<ul class="ageGroup">
-					<li><label><input name="age_group" type="checkbox" value="group12" id="allCheck" checked="checked" />전체</label></li>
-					<li><label><input name="age_group" type="checkbox" value="group1" checked="checked" />07~12</label></li>
-					<li><label><input name="age_group" type="checkbox" value="group2" checked="checked" />13~18</label></li>
-					<li><label><input name="age_group" type="checkbox" value="group3" checked="checked" />19~24</label></li>
-					<li><label><input name="age_group" type="checkbox" value="group4" checked="checked" />25~29</label></li>
-					<li><label><input name="age_group" type="checkbox" value="group5" checked="checked" />30~34</label></li>
-					<li><label><input name="age_group" type="checkbox" value="group6" checked="checked" />35~39</label></li>
-					<li><label><input name="age_group" type="checkbox" value="group7" checked="checked" />40~44</label></li>
-					<li><label><input name="age_group" type="checkbox" value="group8" checked="checked" />45~49</label></li>
-					<li><label><input name="age_group" type="checkbox" value="group9" checked="checked" />50~54</label></li>
-					<li><label><input name="age_group" type="checkbox" value="group10" checked="checked" />55~59</label></li>
-					<li><label><input name="age_group" type="checkbox" value="group11" checked="checked" />60~69</label></li>
+					<li><input name="age_group"  class="check" type="checkbox" value="group12" id="check01" checked="checked" /><label for="check01"><span>전체</span></label></li>
+					<li><input name="age_group"  class="check" type="checkbox" value="group1" id="check02"  checked="checked" /><label for="check02"><span>07~12</span></label></li>
+					<li><input name="age_group"  class="check" type="checkbox" value="group2" id="check03" checked="checked" /><label for="check03"><span>13~18</span></label></il>
+					<li><input name="age_group"  class="check" type="checkbox" value="group3" id="check04" checked="checked" /><label for="check04"><span>19~24</span></label></il>
+					<li><input name="age_group"  class="check" type="checkbox" value="group4" id="check05" checked="checked" /><label for="check05"><span>25~29</span></label></il>
+					<li><input name="age_group"  class="check" type="checkbox" value="group5" id="check06" checked="checked" /><label for="check06"><span>30~34</span></label></il>
+					<li><input name="age_group"  class="check" type="checkbox" value="group6" id="check07" checked="checked" /><label for="check07"><span>35~39</span></label></il>
+					<li><input name="age_group"  class="check" type="checkbox" value="group7" id="check08" checked="checked" /><label for="check08"><span>40~44</span></label></il>
+					<li><input name="age_group"  class="check" type="checkbox" value="group8" id="check09" checked="checked" /><label for="check09"><span>45~49</span></label></il>
+					<li><input name="age_group"  class="check" type="checkbox" value="group9" id="check10" checked="checked" /><label for="check10"><span>50~54</span></label></il>
+					<li><input name="age_group"  class="check" type="checkbox" value="group10" id="check11" checked="checked" /><label for="check11"><span>55~59</span></label></il>
+					<li><input name="age_group"  class="check" type="checkbox" value="group11" id="check12" checked="checked" /><label for="check12"><span>60~69</span></label></li>
 				</ul>
+				<span class="leftBtn"><a href="#" class="button blue" id="go" onclick="go();"> 분석</a></span>
 			</td>
 		</tr>		
-		<!-- <tr>
-		<td>
-		<table class="ageGroup">
-			<span class="inline checkbox_all">
-				<span class="checkboxInp">
-					<input type="checkbox" name="age_group" class="all" value="group12"  id="all" checked="true"/><label>전체 <br ></label>
-				</span>
-				<span class="checkboxInp">
-					<input type="checkbox" name="age_group" value="group1" checked="true" /><label>07-12</label>
-				</span>
-				<span class="checkboxInp">
-					<input type="checkbox" name="age_group" value="group2" checked="true"/><label>13-18</label>
-				</span>
-				<span class="checkboxInp">
-					<input type="checkbox" name="age_group" value="group3" checked="true"/><label>19-24</label>
-				</span>
-				<span class="checkboxInp">
-					<input type="checkbox" name="age_group" value="group4" checked="true"/><label>25-29</label>
-				</span>
-				<span class="checkboxInp">
-					<input type="checkbox" name="age_group" value="group5" checked="true"/><label>30-34</label>
-				</span>
-				<span class="checkboxInp">
-					<input type="checkbox" name="age_group" value="group6" checked="true"/><label>35-39</label>
-				</span>
-				<span class="checkboxInp">
-					<input type="checkbox" name="age_group" value="group7" checked="true"/><label>40-44</label>
-				</span>
-				<span class="checkboxInp">
-					<input type="checkbox" name="age_group" value="group8" checked="true"/><label>45-49</label>
-				</span>
-				<span class="checkboxInp">
-					<input type="checkbox" name="age_group" value="group9" checked="true"/><label>50-54</label>
-				</span>
-				<span class="checkboxInp">
-					<input type="checkbox" name="age_group" value="group10" checked="true" /><label>55-59</label>
-				</span>
-				<span class="checkboxInp">
-					<input type="checkbox" name="age_group" value="group11" checked="true"/><label>60-69</label>
-				</span>
-			</span>						  
-		</table>
-		</td>
-		</tr> -->
-		<tr>
-			<!-- <td style="padding-top:20px"><a href="#" class="button blue" onclick="go();"> 분석 </button></td> -->
-			<td style="padding-top:20px"><button type="button" class="amb_btnstyle blue middle bold" id="go" onclick="go();"  style="float:right">분석</button>  </td>
-		</tr>
 	</table>
 	</div>
 	<div id="contents" >
@@ -126,10 +76,10 @@
 			<table class="tablestyG1">
 				<tbody>
 					<tr>
-						<td width='25%'><table class="graphBox"><tr><td id="day_graph1"> </td></tr></table></td>
-						<td width='25%'><table class="graphBox"><tr><td id="day_graph2"> </td></tr></table></td>
-						<td width='25%'><table class="graphBox"><tr><td id="day_graph3"> </td></tr></table></td>
-						<td width='25%'><table class="graphBox"><tr><td id="day_graph4"> </td></tr></table></td>
+						<td width='25%'><div class="graphBox"><div class="graphBoxT"><span id="title1"></span> </div><div class="graphBoxG" id="day_graph1"> </div></div></td>
+						<td width='25%'><div class="graphBox"><div class="graphBoxT"><span id="title2"></span> </div><div class="graphBoxG" id="day_graph2"> </div></div></td>
+						<td width='25%'><div class="graphBox"><div class="graphBoxT"><span id="title3"></span> </div><div class="graphBoxG" id="day_graph3"> </div></div></td>
+						<td width='25%'><div class="graphBox"><div class="graphBoxT"><span id="title4"></span> </div><div class="graphBoxG" id="day_graph4"> </div></div></td>
 					</tr>
 				</tbody>
 			</table>
@@ -160,15 +110,22 @@
 		}		
 	});
 
-	$(function(){
-		$("#allCheck").click(function(){
-			if($("#allCheck").prop("checked")) {
-				$("input[type=checkbox]").prop("checked",true);
-			} else {
-				$("input[type=checkbox]").prop("checked",false);
-			}
-		})
-	})	
+	$("#check01").click(function(){
+		if($("#check01").prop("checked")) {
+			$("input[type=checkbox]").prop("checked",true);
+		} else {
+			$("input[type=checkbox]").prop("checked",false);
+		}
+	})
+
+	$(".check").click(function(){
+		if ($("input[name='age_group']:checked").length > 11){
+			$("#check01").prop("checked", true);
+		}else {
+			$("#check01").prop("checked", false);
+		}
+	})
+	
 
 	$.ajax({
 		url : "json_byday.aspx?v0=byday&v1=주중&v3=MF&v4='ALL'&v5='201901','201902','201903','201904','201905','201906'",
@@ -360,6 +317,7 @@
 	//var myChart;
 	var colors = ['#00aeef', '#8dc63f', '#ffb100'];
 	function drawGraph_day1(){
+		$('#title1').html("총이용자수(*1,000명) - " + info[2]);
 		var dom = document.getElementById("day_graph1");
 		var myChart = echarts.init(dom);
 		var app = {};
@@ -369,14 +327,14 @@
 			textStyle:{
 				color: '#000000'
 			},
-			title: {
-				text: "영상서비스 총이용자수(*1,000명) - " + info[2],
-				left: 'center',
-				textStyle:{
-					fontSize: 12
-				},
-				padding: 8
-			},
+			// title: {
+			// 	text: "총이용자수(*1,000명) - " + info[2],
+			// 	left: 'center',
+			// 	textStyle:{
+			// 		fontSize: 12
+			// 	},
+			// 	padding: 8
+			// },
 			tooltip: {
 				backgroundColor: '#666',
 				trigger: 'axis',
@@ -459,6 +417,7 @@
 	}
     
 	function drawGraph_day2(){
+		$('#title2').html("총이용시간(1,000,000분) - " + info[2]);
 		var dom = document.getElementById("day_graph2");
 		var myChart = echarts.init(dom);
 		var app = {};
@@ -468,7 +427,7 @@
 				color: '#000000'
 			},
 			title: {
-				text: "영상서비스 총이용시간(1,000,000분) - " + info[2],
+				text: "총이용시간(1,000,000분) - " + info[2],
 				left: 'center',
 				textStyle:{
 					fontSize: 12
@@ -556,6 +515,7 @@
 	}    
 
 	function drawGraph_day3(){
+		$('#title3').html("일평균 이용시간(분) - " + info[2]);
 		var dom = document.getElementById("day_graph3");
 		var myChart = echarts.init(dom);
 		var app = {};
@@ -564,14 +524,14 @@
 			textStyle:{
 				color: '#000000'
 			},
-			title: {
-				text: "영상서비스 일평균 이용시간(분) - " + info[2],
-				left: 'center',
-				textStyle:{
-					fontSize: 12
-				},
-				padding: 8
-			},
+			// title: {
+			// 	text: "일평균 이용시간(분) - " + info[2],
+			// 	left: 'center',
+			// 	textStyle:{
+			// 		fontSize: 12
+			// 	},
+			// 	padding: 8
+			// },
 			tooltip: {
 				backgroundColor: '#666',
 				trigger: 'axis',
@@ -653,6 +613,7 @@
 	}
 
 	function drawGraph_day4(){
+		$('#title4').html("일평균 이용률(%) - " + info[2]);
 		var dom = document.getElementById("day_graph4");
 		var myChart = echarts.init(dom);
 		var app = {};
@@ -661,14 +622,14 @@
 			textStyle:{
 				color: '#000000'
 			},
-			title: {
-				text: "영상서비스 일평균 이용률(%) - " + info[2],
-				left: 'center',
-				textStyle:{
-					fontSize: 12
-				},
-				padding: 8
-			},
+			// title: {
+			// 	text: "일평균 이용률(%) - " + info[2],
+			// 	left: 'center',
+			// 	textStyle:{
+			// 		fontSize: 12
+			// 	},
+			// 	padding: 8
+			// },
 			tooltip: {
 				backgroundColor: '#666',
 				trigger: 'axis',

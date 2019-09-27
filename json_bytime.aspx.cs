@@ -128,6 +128,9 @@ public partial class json_bytime : System.Web.UI.Page  // 이용행태 - 시간�
         if(age == "'ALL'"){            
             info_target += "전체";
         }
+        else if(age.Substring(1, 3) == "ALL"){
+            info_target += "전체";
+        }
         else{
             info_target += age.Substring(1, 2) + "~" + age.Substring(age_num-3, 2) + "세";
         }

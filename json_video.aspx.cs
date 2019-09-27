@@ -111,6 +111,9 @@ public partial class json_video : System.Web.UI.Page   //사후분석
         if(age == "'ALL'"){            
             info_target += "전체";
         }
+        else if(age.Substring(1, 3) == "ALL"){
+            info_target += "전체";
+        }
         else{
             info_target += age.Substring(1, 2) + "~" + age.Substring(age_num-3, 2) + "세";
         }
