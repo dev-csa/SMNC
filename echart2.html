@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+</head>
+<body>
+    <!-- Prepare a Dom with size (width and height) for ECharts -->
+    <div id="main" style="height:400px"></div>
+    <div id="main2" style="height:400px">22</div>
+    <div id="main3" style="height:400px">22</div>
+    <!-- ECharts import -->
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+    <script type="text/javascript">
+
+var labelTop = {
+    normal : {
+        label : {
+            show : true,
+            position : 'center',
+            formatter: '{a}',
+            textStyle: {
+                baseline : 'bottom'
+            }
+        },
+        labelLine : {
+            show : false
+        }
+    }
+};
+var labelFromatter = {
+    normal : {
+        label : {
+            formatter : function (params){
+                return 100 - params.value + '%'
+            },
+            textStyle: {
+                baseline : 'top'
+            }
+        }
+    },
+}
+
+var labelBottom = {
+    normal : {
+        color: '#ccc',
+        label : {
+            show : true,
+            position : 'center'
+        },
+        labelLine : {
+            show : false
+        }
+    },
+    emphasis: {
+        color: 'rgba(0,0,0,0)'
+    }
+};
+
+var radius = [40, 55];
+        // configure for module loader
+    function pieGraph(){
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+        
+        // use
+        require(
+            [
+                'echarts',
+                'echarts/chart/pie' // require the specific chart type
+            ],
+            function (ec) {
+                // Initialize after dom ready
+                var myChart = ec.init(document.getElementById('main')); 
+                
+                var option = {
+                        title: {
+                            subtext: '',
+                            textStyle: {
+                                fontSize: 16,
+                                color: '#333'
+                            },
+                            subtextStyle: {
+                                fontSize: 14,
+                                color: '#333',
+                                padding:20
+                            },
+                            left: 'center'
+                        },
+                    legend: {
+                    x : 'center',
+                    y : 'center',
+                    data:[ 'TV','PC','Mobile']
+                    },		
+                        tooltip: {},
+                    title : {
+                    text: '스크린 이용률',
+                    x: 'left'
+                    },
+                        series: [
+                    {
+                        type : 'pie',
+                        center : ['30%', '30%'],
+                        radius: ['15%', '30%'],
+                        x: '0%', // for funnel
+                        itemStyle : labelFromatter,
+                        data : [
+                            {name:'other', value:9.1, itemStyle : labelBottom},
+                            {name:'TV', value:90.9,itemStyle : labelTop}
+                        ]
+                    },
+                    {
+                        type : 'pie',
+                        center : ['50%', '30%'],
+                        radius: ['15%', '30%'],
+                        x: '0%', // for funnel
+                        itemStyle : labelFromatter,
+                        data : [
+                            {name:'other', value:24.6, itemStyle : labelBottom},
+                            {name:'PC', value:75.4,itemStyle : labelTop}
+                        ]
+                    },
+                    {
+                        type : 'pie',
+                        center : ['70%', '30%'],
+                        radius: ['15%', '30%'],
+                        x: '0%', // for funnel
+                        itemStyle : labelFromatter,
+                        data : [
+                            {name:'other', value:9.8, itemStyle : labelBottom},
+                            {name:'Mobile', value:90.2,itemStyle : labelTop}
+                        ]
+                    }
+                    ]
+      };
+        
+                // Load data into the ECharts instance 
+                myChart.setOption(option); 
+            }
+        );
+    }
+    pieGraph()
+    barGraph()
+    barGraph2()
+
+    function barGraph(){
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+        
+        // use
+        require(
+            [
+                'echarts',
+                'echarts/chart/bar' // require the specific chart type
+            ],
+            function (ec) {
+                // Initialize after dom ready
+                var myChart = ec.init(document.getElementById('main2')); 
+                var td_title = ['지상파', '케이블', '종편', '디지털동영상', '기타'];
+                var cost_data = [1534.0, 2695.9, 719.9, 454.2, 555];
+                option = {                    
+                    xAxis: [
+                        {
+                            type: 'category',
+                            show: false,
+                            data: td_title
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'value',
+                            show: false,
+                            name: '억 원'
+                        }
+                    ],
+                    series: [
+                        {
+                            type: 'bar',
+                            itemStyle: {
+                                normal: {
+                                    color: function(params) {
+                                        // build a color map as your need.
+                                        var colorList = ['#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD'];
+                                        return colorList[params.dataIndex]
+                                    },
+                                    label: {
+                                        show: true,
+                                        position: 'top',
+                                        formatter: '{b}\n{c}'
+                                    }
+                                }
+                            },
+                            data: cost_data,
+                            barWidth: 40,
+                        }
+                    ]
+                };                                                
+                // Load data into the ECharts instance 
+                myChart.setOption(option); 
+            }
+        );
+    
+    }
+
+    function ageGraph(){
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+        
+        // use
+        require(
+            [
+                'echarts',
+                'echarts/chart/bar' // require the specific chart type
+            ],
+            function (ec) {
+                // Initialize after dom ready
+                var myChart = ec.init(document.getElementById('main3')); 
+                option = {
+                    tooltip : {
+                        trigger: 'axis',
+                        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                        }
+                    },
+                    legend: {
+                        data:['10대', '20대', '30대', '40대', '50대', '60대'],
+                        // position: 'bottom'
+                    },                    
+                    calculable : true,
+                    xAxis : [
+                        {
+                            type : 'value',
+                            name: '%'
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'category',
+                            data : ['TV','PC','Mobile']
+                        }
+                    ],
+                    series : [
+                        {
+                            name:'10대',
+                            type:'bar',
+                            stack: '总量',
+                            itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                            data:[320, 302, 301]
+                        },
+                        {
+                            name:'20대',
+                            type:'bar',
+                            stack: '总量',
+                            itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                            data:[120, 132, 101]
+                        },
+                        {
+                            name:'30대',
+                            type:'bar',
+                            stack: '总量',
+                            itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                            data:[220, 182, 191]
+                        },
+                        {
+                            name:'40대',
+                            type:'bar',
+                            stack: '总量',
+                            itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                            data:[150, 212, 201]
+                        },
+                        {
+                            name:'50대',
+                            type:'bar',
+                            stack: '总量',
+                            itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                            data:[820, 832, 901]
+                        },
+                        {
+                            name:'60대',
+                            type:'bar',
+                            stack: '总量',
+                            itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                            data:[820, 832, 901]
+                        }
+                    ]
+                };
+                    ;                                                
+                // Load data into the ECharts instance 
+                myChart.setOption(option); 
+            }
+        );
+    
+    }    
+          
+    </script>
+</body>

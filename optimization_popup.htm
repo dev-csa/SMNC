@@ -1,0 +1,230 @@
+<!-- 
+	레이어 팝업 구조
+	띄워지는 레이어팝업 jsp는 
+	<html></html> <head></head> <body></body> 테그를 가질수 없음
+	반드시 순수 <div>로 시작하는 구조를 가져야함
+	
+	<div class="modalWrap">
+		<div class="modal_header">
+		</div>
+		<div class="modal_body">
+		</div>
+		<div class="modal_footer">
+		</div>
+	</div>
+	
+	위의 구조를 반드시 준수할것
+ -->
+
+ <script type="text/javascript">
+	$(document).ready( function() {
+	
+	});
+	var tab = "target_tab01";
+	function tabView(id,obj) {
+		var $this     = $(obj);
+		var $tabClick = $this.parents('.tabClick');
+		var $wrap     = $('.tabWrap');
+		var $id       = $('#'+id);
+		$wrap.find('.tabCont').hide();
+		$wrap.find($id).show();
+	
+		$tabClick.find('.hTab').removeClass('active');
+		$this.addClass('active');
+		tab = id;
+		
+	}
+	</script>
+	
+	<div class="modalWrap" role="document" >
+		<!--  레이어팝업 header -->
+		<div class="modal_header">
+			<h2 class="modal-title">타깃 설정하기</h2>
+		</div>
+	
+		<!--  레이어팝업 content -->
+		<div class="modal_body" scroll="none">
+
+			<!-- 여기분터 컨텐츠 내용임 -->
+			<div class="rowBox">
+				<div class="g_column w20p">
+					<div class="unitBox tableBox">
+						<div class="tableHead">
+							<span class="tit">Gender</span>
+						</div>
+						<div class="tableBody col1">
+							<div class="colUnit tabClick">
+								<span class="unit pdNo"><button type="button" class="hTab active" onClick="tabView('target_tab01',this)">개인 (16)</button></span>
+								<span class="unit pdNo"><button type="button" class="hTab" onClick="tabView('target_tab02',this)">여자 (8)</button></span>
+								<span class="unit pdNo"><button type="button" class="hTab" onClick="tabView('target_tab03',this)">남자 (8)</button></span>								
+							</div>
+						</div>
+					</div>
+				</div>
+	
+				<div class="g_column w75p">
+					<div class="unitBox tableBox tabWrap">
+						<div class="tableHead">
+							<span class="tit">Age</span>
+						</div>
+						
+						<!-- 개인 -->
+						<div id="target_tab01" class="tableBody col5 tabCont">
+								<div class="colUnit">
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_01" value="MF0769" checked /><label>전체</label></span>
+									</span>
+								</div>
+								<div class="colUnit">
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_01" value="MF1329" /><label>1329</label></span>
+									</span>
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_01" value="MF1334" /><label>1334</label></span>
+									</span>
+								</div>
+								<div class="colUnit">
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_01" value="MF1934" /><label>1934</label></span>
+									</span>
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_01" value="MF1939" /><label>1939</label></span>
+									</span>
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_01" value="MF1949" /><label>1949</label></span>
+									</span>
+								</div>
+								<div class="colUnit">
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_01" value="MF2534" /><label>2534</label></span>
+									</span>
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_01" value="MF2539" /><label>2539</label></span>
+									</span>
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_01" value="MF2544" /><label>2544</label></span>
+									</span>
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_01" value="MF2549" /><label>2549</label></span>
+									</span>
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_01" value="MF2559" /><label>2559</label></span>
+									</span>
+								</div>
+								<div class="colUnit">
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_01" value="MF3034"/><label>3034</label></span>
+									</span>
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_01" value="MF3039"/><label>3039</label></span>
+									</span>
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_01" value="MF3044"/><label>3044</label></span>
+									</span>
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_01" value="MF3049" /><label>3049</label></span>
+									</span>
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_01" value="MF3059"/><label>3059</label></span>
+									</span>
+								</div>
+							</div>
+							<!-- //개인 -->
+		
+							<!-- 여자 -->
+							<div id="target_tab02" class="tableBody col5 tabCont" style="display:none;">
+								<div class="colUnit">
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_02" value="F0769" /><label>전체</label></span>
+									</span>
+								</div>
+								<div class="colUnit">
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_02" value="F1939" /><label>1939</label></span>
+									</span>
+								</div>
+								<div class="colUnit">
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_02" value="F2534" /><label>2534</label></span>
+									</span>
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_02" value="F2544" /><label>2544</label></span>
+									</span>
+								</div>
+								<div class="colUnit">
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_02" value="F3044" /><label>3044</label></span>
+									</span>
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_02" value="F3049" /><label>3049</label></span>
+									</span>
+								</div>
+								<div class="colUnit">
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_02" value="F3544" /><label>3544</label></span>
+									</span>
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_02" value="F3549" /><label>3549</label></span>
+									</span>
+								</div>
+							</div>
+							<!-- //여자 -->
+		
+							<!-- 남자 -->
+							<div id="target_tab03" class="tableBody col5 tabCont" style="display:none;">
+								<div class="colUnit">
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_03" value="M0769" /><label>전체</label></span>
+									</span>
+								</div>
+								<div class="colUnit">
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_03" value="M3044" /><label>3044</label></span>
+									</span>
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_03" value="M3049" /><label>3049</label></span>
+									</span>
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_03" value="M3059" /><label>3059</label></span>
+									</span>
+								</div>
+								<div class="colUnit">
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_03" value="M3544" /><label>3544</label></span>
+									</span>
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_03" value="M3559" /><label>3559</label></span>
+									</span>
+								</div>
+								<div class="colUnit">
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_03" value="M4059" /><label>4059</label></span>
+									</span>
+								</div>
+								<div class="colUnit">
+									<span class="unit">
+										<span class="radioInp"><input type="radio" name="Age_03" value="M4559" /><label>4559</label></span>
+									</span>
+								</div>
+							</div>
+							<!-- //남자 -->
+					</form>
+					</div>
+				</div>
+			</div>
+			
+			<!-- rowBox 반복단위 -->
+	
+		</div>
+	
+		<!--  레이어팝업 footer -->
+		<div class="modal_footer">
+			<div class="btnArea">
+				<button type="button" class="amb_btnstyle middle black" onClick="javascript:closeModal(this);"><span class="text">취소</span></button>
+				<button type="button" class="amb_btnstyle middle blue" onClick="javascript:select_target();closeModal(this);"><span class="text">확인</span></button>
+			</div>
+		</div>
+		
+	</div>
+			
+	

@@ -1,0 +1,25 @@
+<div class="header">
+        <link rel="StyleSheet" HREF="css/style0.css" type="text/css"/>
+	<h1>Gradient Buttons</h1>
+</div>
+<link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+
+	<a href="#"  class="button">
+		??		
+	</a>
+	<div class="mask"></div>
+
+<script>
+
+const body = document.body;
+const btn = document.querySelectorAll('.button')[0];
+
+btn.addEventListener('mouseenter', () => {
+	body.classList.add('show');
+});
+
+btn.addEventListener('mouseleave', () => {
+	body.classList.remove('show');
+});
+
+</script>

@@ -1,0 +1,59 @@
+﻿
+<div id="leftbar1">
+  
+  <ul class="leftMenu">		
+    <!-- <li><a href="#menu"><span><img src="images/btn_close.gif" /></span></a></li>  -->
+    <li ><a href="#" class="menuLink"><img src="images/btn_control.gif" /><img src="images/btn_control_over.gif" class="over" id="bar_control"></a></li>
+    <li class="leftMenuLi"><a href="overview.aspx" class="menuLink"><img src="images/btn_left01.gif" /><img src="images/btn_left01_over.gif" class="over"></a>
+    <!-- "서브메뉴영역"> -->
+      <ul class="submenu">
+      <li><a class="submenuLinkT" href="overview.aspx">Overview</a></li>
+        </ul>
+      
+    </li>
+    <li class="leftMenuLi"><a href="#" class="menuLink"><img src="images/btn_left02.gif" /><img src="images/btn_left02_over.gif" class="over"></a>
+      <!-- "서브메뉴영역">	 -->
+      <ul class="submenu">
+        <li><a class="submenuLinkT" href="#">USAGE</a></li>
+        <li><a class="submenuLink" href="usage_by_target.aspx">by Target</a></li>
+        <li><a class="submenuLink" href="usage_by_time.aspx">by Time of day</a></li>
+        <li><a class="submenuLink" href="usage_by_day.aspx">by Day of week</a></li>
+        <li><a class="submenuLink" href="usage_video.aspx">Video Usage</a></li>
+      </ul>
+      
+      </li>
+      <li class="leftMenuLi"><a href="#" class="menuLink"><img src="images/btn_left03.gif" /><img src="images/btn_left03_over.gif" class="over"></a>
+      <!-- "서브메뉴영역"> -->
+      <ul class="submenu">
+        <li><a class="submenuLinkT" href="#">Planning</a></li>
+        <li><a class="submenuLink" href="#">Budget Optimization</a></li>
+        <li><a class="submenuLink" href="#">Simulation</a></li>
+        <li><a class="submenuLink" href="#">Reach Curves</a></li>
+        <li><a class="submenuLink" href="#">Optimize Reach Curves</a></li>
+      </ul>
+      
+    </li>
+      <li class="leftMenuLi"><a href="#" class="menuLink"><img src="images/btn_left04.gif" /><img src="images/btn_left04_over.gif" class="over"></a>
+      <!-- "서브메뉴영역"> -->
+      <ul class="submenu">
+        <li><a class="submenuLinkT" href="#">Evaluate</a></li>
+        <li><a class="submenuLink" href="#">3S Post-Buy</a></li>
+        <li><a class="submenuLink" href="#">3S Performance</a></li>
+      </ul>
+      
+      </li>
+  </ul>
+  <div id="leftbarNav"> </div> 
+</div>
+
+
+<script type="text/javascript">
+  $(function(){
+    $('.leftMenuLi').mouseenter(function(){
+      $("#leftbarNav").show();
+    });
+    $('.leftMenuLi').mouseleave(function(){
+      $("#leftbarNav").hide();
+    });
+  });
+  </script>
